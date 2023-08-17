@@ -386,6 +386,13 @@ class _MapLocationPickerState extends State<MapLocationPicker> {
                       CameraUpdate.newCameraPosition(cameraPosition()));
                   _address = placesDetails.result.formattedAddress ?? "";
                   widget.onSuggestionSelected?.call(placesDetails);
+                  _geocodingResult = GeocodingResult(
+                    geometry: placesDetails.result.geometry!,
+                    placeId: placesDetails.result.placeId!,
+                    addressComponents: placesDetails.result.addressComponents,
+                    formattedAddress: placesDetails.result.formattedAddress,
+                    types: placesDetails.result.types,
+                  );
                   setState(() {});
                 },
               ),
